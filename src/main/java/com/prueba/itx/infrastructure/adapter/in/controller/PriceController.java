@@ -5,6 +5,8 @@ import com.prueba.itx.application.usecases.GetPriceUseCase;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.factory.Mappers;
+import org.openapitools.api.PricesApi;
+import org.openapitools.model.PriceDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +17,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/")
 @RequiredArgsConstructor
 @Api(tags = "Price API")
-public class PriceController implements PricesApi{
+public class PriceController implements PricesApi {
 
     private final GetPriceUseCase getPriceUseCase;
 

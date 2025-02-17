@@ -4,6 +4,7 @@ import com.prueba.itx.domain.model.Price;
 import com.prueba.itx.infrastructure.adapter.out.persistence.entity.PriceEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.openapitools.model.PriceDto;
 
 @Mapper
 public interface PriceEntityMapper {
