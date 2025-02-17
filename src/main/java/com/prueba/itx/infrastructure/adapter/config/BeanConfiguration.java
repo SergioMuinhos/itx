@@ -15,11 +15,6 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfiguration {
 
 
-//    @Bean
-//    public ModelMapper modelMapper() {
-//        return new ModelMapper();
-//    }
-
     @Bean
     public PricePersistenceAdapter productPersistenceAdapter(PriceRepositoryJpa priceRepository, PriceMapper priceMapper) {
         return new PricePersistenceAdapter(priceRepository, priceMapper);
