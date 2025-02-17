@@ -22,6 +22,7 @@ class ItxApplicationTests {
 
     @Test
     void contextLoads() {
+        assertThat(this.restTemplate).isNotNull();
     }
 
 

@@ -6,7 +6,7 @@ import com.prueba.itx.infrastructure.adapter.out.persistence.PricePersistenceAda
 import com.prueba.itx.infrastructure.adapter.out.persistence.repository.PriceRepositoryJpa;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.swagger2.mappers.ModelMapper;
+
 
 /**
  * Configuracion BEANS
@@ -15,10 +15,10 @@ import springfox.documentation.swagger2.mappers.ModelMapper;
 public class BeanConfiguration {
 
 
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
+//    @Bean
+//    public ModelMapper modelMapper() {
+//        return new ModelMapper();
+//    }
 
     @Bean
     public PricePersistenceAdapter productPersistenceAdapter(PriceRepositoryJpa priceRepository, PriceMapper priceMapper) {
