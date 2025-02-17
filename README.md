@@ -55,7 +55,7 @@ Resultados correctos en los test.
 
 ### Prerequisitos
 * Java 17
-* Maven 3.6.3
+* Maven 3.9.9
 * OpenAPI 
 
 ### Build
