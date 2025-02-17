@@ -1,0 +1,66 @@
+---
+openapi: 3.0.1
+info:
+  title: ITX GetPrice API
+  description: API for ITX application
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Generated server URL
+paths:
+  /prices:
+    get:
+      tags:
+        - Price Controller
+      summary: Get Price
+      description: Get the price based on the application date, product ID, and brand ID.
+      parameters:
+        - in: query
+          name: applicationDate
+          description: Application date and time format (yyyy-MM-dd'T'HH:mm:ss).
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: productId
+          description: Product ID.
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: brandId
+          description: Brand ID.
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceDto'
+components:
+  schemas:
+    PriceDto:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int64
+        chainId:
+          type: integer
+          format: int64
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        price:
+          type: number
+          format: double
+        currency:
+          type: string
