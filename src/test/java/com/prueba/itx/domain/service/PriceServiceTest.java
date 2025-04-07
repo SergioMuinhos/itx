@@ -1,6 +1,7 @@
 package com.prueba.itx.domain.service;
 
 import com.prueba.itx.application.usescases.PriceOutputPort;
+import com.prueba.itx.domain.exception.NoPriceFoundException;
 import com.prueba.itx.domain.model.Price;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -49,7 +51,23 @@ class PriceServiceTest {
         assertEquals(35455L, price.getProductId());
         assertEquals(35.50, price.getPrice());
 
+    }
 
+    @Test
+    void testGetPriceNoPriceFound() {
+        when(priceOutputPort.getPrice(anyLong(), anyLong(), any(LocalDateTime.class))).thenReturn(Optional.empty());
+
+        assertThrows(NoPriceFoundException.class, () -> {
+            priceService.getPrice(35455L, 1L, LocalDateTime.parse("2020-06-16T21:00:00"));
+        });
+    }
+    @Test
+    void testGetPriceNull() {
+        when(priceOutputPort.getPrice(anyLong(), anyLong(), any(LocalDateTime.class))).thenReturn(null);
+
+        assertThrows(NullPointerException.class, () -> {
+            priceService.getPrice(35455L, 1L, LocalDateTime.parse("2020-06-16T21:00:00"));
+        });
     }
 
 }
