@@ -59,8 +59,9 @@ class ItxApplicationTests {
         PriceDto result = response.getBody();
         assertThat(HttpStatus.OK).isEqualTo(response.getStatusCode());
         assertThat(result).isNotNull();
-        assertThat(result.getPrice()).isEqualTo(35.5);
+        assertThat(result.getPrice()).isEqualTo(25.45);
     }
+
 
     @Test
     public void testGetPriceAt10amOnDay15() {
@@ -82,6 +83,18 @@ class ItxApplicationTests {
         assertThat(HttpStatus.OK).isEqualTo(response.getStatusCode());
         assertThat(result).isNotNull();
         assertThat(result.getPrice()).isEqualTo(38.95);
+    }
+    @Test
+    public void testGetPriceAt9pmOnDay14() {
+        ResponseEntity<PriceDto> response =
+                this.getCallResponse(this.restTemplate, "35455", "1", "2020-06-14T21:00:00");
+        PriceDto result = response.getBody();
+
+        assertThat(HttpStatus.OK).isEqualTo(response.getStatusCode());
+        assertThat(result).isNotNull();
+        assertThat(result.getProductId()).isEqualTo(35455L);
+        assertThat(result.getPrice()).isEqualTo(35.50);
+
     }
 
 

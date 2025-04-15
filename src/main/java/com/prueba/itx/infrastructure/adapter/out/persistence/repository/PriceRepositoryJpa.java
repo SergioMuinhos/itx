@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 public interface PriceRepositoryJpa extends JpaRepository<PriceEntity, Long> {
-    @Query("SELECT p FROM PriceEntity p WHERE p.productId = :productId AND  p.brand.id = :chainId  " +
+    @Query("SELECT p FROM PriceEntity p WHERE p.productId = :productId AND  p.brand.id = :brandId  " +
             "AND ( :applicationDate BETWEEN p.startDate AND p.endDate )" +
             "ORDER BY p.priority DESC LIMIT 1")
     @Transactional(readOnly = true)
     @Retryable
     PriceEntity findPrice(@Param("applicationDate") LocalDateTime applicationDate,
                           @Param("productId") Long productId,
-                          @Param("chainId") Long chainId);
+                          @Param("brandId") Long brandId);
 }
