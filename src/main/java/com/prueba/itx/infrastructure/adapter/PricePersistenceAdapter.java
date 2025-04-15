@@ -8,6 +8,7 @@ import com.prueba.itx.infrastructure.adapter.out.persistence.repository.PriceRep
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,11 +21,11 @@ public class PricePersistenceAdapter implements PriceOutputPort {
 
     @Override
     public Optional<Price> getPrice(Long productId, Long brandId, LocalDateTime applicationDate) {
-        PriceEntity priceEntity = priceRepository.findPrice(applicationDate, productId, brandId);
-        if (Objects.isNull(priceEntity)) {
+        List<PriceEntity> priceFound = priceRepository.findPrice(applicationDate, productId, brandId);
+        if (priceFound.isEmpty()) {
             return Optional.empty();
         }
-        Price price = priceMapper.entityToDomain(priceEntity);
+        Price price = priceMapper.entityToDomain(priceFound.get(0));
         return Optional.of(price);
 
     }
